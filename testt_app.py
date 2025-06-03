@@ -80,7 +80,7 @@ def main():
 
     # Inputs
     role = st.text_input("🎯 Enter Job Role:", "Data Analyst")
-    location = st.text_input("📍 Enter Location:", "London")
+    location = st.text_input("📍 Enter Location:", "Malaysia")
 
     if st.button("🔍 Analyze Skills"):
         jobs = fetch_jobs(role, location)
