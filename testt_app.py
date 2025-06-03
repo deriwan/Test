@@ -7,28 +7,32 @@ from collections import Counter
 # -----------------------------------
 # Configuration (Use Your API Keys)
 # -----------------------------------
-ADZUNA_APP_ID = 'drwnnn'
-ADZUNA_APP_KEY = 'Drwnnn123#'
+ADZUNA_APP_ID = 'drwnnn'       # Replace with your real App ID
+ADZUNA_APP_KEY = 'Drwnnn123#'  # Replace with your real App Key
 
 # -----------------------------------
 # Helper Functions
 # -----------------------------------
 
 def fetch_jobs(role, location, results_per_page=20):
-    url = 'https://api.adzuna.com/v1/api/jobs/gb/search/1'
+    url = 'https://api.adzuna.com/v1/api/jobs/gb/search/1'  # 'gb' = UK. Change if needed.
     params = {
-        'app_id': 'drwnnn',
-        'app_key': 'Drwnnn123#',
+        'app_id': ADZUNA_APP_ID,
+        'app_key': ADZUNA_APP_KEY,
         'results_per_page': results_per_page,
         'what': role,
         'where': location,
         'content-type': 'application/json'
     }
     response = requests.get(url, params=params)
+
     if response.status_code == 200:
         return response.json().get('results', [])
+    elif response.status_code == 401:
+        st.error("Unauthorized access: Please check your API credentials (App ID and App Key).")
+        return []
     else:
-        st.error(f"Error fetching jobs: {response.status_code}")
+        st.error(f"Error fetching jobs: {response.status_code} - {response.reason}")
         return []
 
 def extract_skills(job_descriptions, top_n=10):
