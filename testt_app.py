@@ -7,8 +7,8 @@ from collections import Counter
 # -----------------------------------
 # Configuration (Use Your API Keys)
 # -----------------------------------
-ADZUNA_APP_ID = 'drwnnn'       # Replace with your real App ID
-ADZUNA_APP_KEY = 'Drwnnn123#'  # Replace with your real App Key
+ADZUNA_APP_ID = 'f8ccd3fb'       # Replace with your real App ID
+ADZUNA_APP_KEY = '84979ad1a90455d0a95587ed93f04db0#'  # Replace with your real App Key
 
 # -----------------------------------
 # Helper Functions
