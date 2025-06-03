@@ -17,8 +17,8 @@ ADZUNA_APP_KEY = 'Drwnnn123#'
 def fetch_jobs(role, location, results_per_page=20):
     url = 'https://api.adzuna.com/v1/api/jobs/gb/search/1'
     params = {
-        'app_id': drwnnn,
-        'app_key': Drwnnn123#,
+        'app_id': 'drwnnn',
+        'app_key': 'Drwnnn123#',
         'results_per_page': results_per_page,
         'what': role,
         'where': location,
