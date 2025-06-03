@@ -7,8 +7,8 @@ from collections import Counter
 # -----------------------------------
 # Configuration (Use Your API Keys)
 # -----------------------------------
-ADZUNA_APP_ID = 'your_adzuna_app_id'
-ADZUNA_APP_KEY = 'your_adzuna_app_key'
+ADZUNA_APP_ID = 'drwnnn'
+ADZUNA_APP_KEY = 'Drwnnn123#'
 
 # -----------------------------------
 # Helper Functions
@@ -17,8 +17,8 @@ ADZUNA_APP_KEY = 'your_adzuna_app_key'
 def fetch_jobs(role, location, results_per_page=20):
     url = 'https://api.adzuna.com/v1/api/jobs/gb/search/1'
     params = {
-        'app_id': ADZUNA_APP_ID,
-        'app_key': ADZUNA_APP_KEY,
+        'app_id': drwnnn,
+        'app_key': Drwnnn123#,
         'results_per_page': results_per_page,
         'what': role,
         'where': location,
