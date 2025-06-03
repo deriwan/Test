@@ -7,8 +7,8 @@ from collections import Counter
 # -----------------------------------
 # Configuration (Ganti dengan API sebenar anda)
 # -----------------------------------
-ADZUNA_APP_ID = 'drwnnn'       # Gantikan dengan App ID sebenar
-ADZUNA_APP_KEY = 'Drwnnn123#'  # Gantikan dengan App Key sebenar
+ADZUNA_APP_ID = 'f8ccd3fb'       # Gantikan dengan App ID sebenar
+ADZUNA_APP_KEY = '98e52090fbfa37dfeec774ab8bf8aeec'  # Gantikan dengan App Key sebenar
 
 # -----------------------------------
 # Helper Functions
