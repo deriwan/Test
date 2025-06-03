@@ -5,17 +5,18 @@ import matplotlib.pyplot as plt
 from collections import Counter
 
 # -----------------------------------
-# Configuration (Use Your API Keys)
+# Configuration (Ganti dengan API sebenar anda)
 # -----------------------------------
-ADZUNA_APP_ID = 'f8ccd3fb'       # Replace with your real App ID
-ADZUNA_APP_KEY = '98e52090fbfa37dfeec774ab8bf8aeec'  # Replace with your real App Key
+ADZUNA_APP_ID = 'drwnnn'       # Gantikan dengan App ID sebenar
+ADZUNA_APP_KEY = 'Drwnnn123#'  # Gantikan dengan App Key sebenar
 
 # -----------------------------------
 # Helper Functions
 # -----------------------------------
 
 def fetch_jobs(role, location, results_per_page=20):
-    url = 'https://api.adzuna.com/v1/api/jobs/gb/search/1'  # 'gb' = UK. Change if needed.
+    # Gunakan endpoint UK (gb)
+    url = 'https://api.adzuna.com/v1/api/jobs/gb/search/1'
     params = {
         'app_id': ADZUNA_APP_ID,
         'app_key': ADZUNA_APP_KEY,
@@ -29,10 +30,10 @@ def fetch_jobs(role, location, results_per_page=20):
     if response.status_code == 200:
         return response.json().get('results', [])
     elif response.status_code == 401:
-        st.error("Unauthorized access: Please check your API credentials (App ID and App Key).")
+        st.error("Akses tidak dibenarkan: Sila semak kelayakan API anda (App ID dan App Key).")
         return []
     else:
-        st.error(f"Error fetching jobs: {response.status_code} - {response.reason}")
+        st.error(f"Ralat mendapatkan kerja: {response.status_code} - {response.reason}")
         return []
 
 def extract_skills(job_descriptions, top_n=10):
@@ -82,28 +83,28 @@ def main():
     st.title("📊 SkillMap AI")
     st.markdown("*Personalized learning based on job market demand.*")
 
-    # Inputs
+    # Input untuk job role dan lokasi UK
     role = st.text_input("🎯 Enter Job Role:", "Data Analyst")
-    location = st.text_input("📍 Enter Location:", "Malaysia")
+    location = st.text_input("📍 Enter Location:", "London")
 
     if st.button("🔍 Analyze Skills"):
         jobs = fetch_jobs(role, location)
 
         if not jobs:
-            st.warning("No job data found. Try a different job or location.")
+            st.warning("Tiada data kerja dijumpai. Sila cuba kerja atau lokasi yang lain.")
             return
 
-        st.success(f"✅ Found {len(jobs)} job listings")
+        st.success(f"✅ Jumpa {len(jobs)} senarai kerja")
 
         job_descriptions = [job.get('description', '') for job in jobs]
         skills = extract_skills(job_descriptions)
 
-        # Skills Table
+        # Papar table skill
         st.subheader("📈 Top Skills Extracted")
         skills_df = pd.DataFrame(skills, columns=["Skill", "Frequency"])
         st.dataframe(skills_df)
 
-        # Job Preview Table
+        # Papar contoh senarai kerja
         st.subheader("💼 Sample Job Listings")
         job_preview = pd.DataFrame([
             {"Title": job.get("title"), "Company": job.get("company", {}).get("display_name", "N/A")}
@@ -111,7 +112,7 @@ def main():
         ])
         st.table(job_preview)
 
-        # Bar Chart
+        # Carta bar frequency skill
         st.subheader("📊 Skill Frequency Bar Chart")
         fig1, ax1 = plt.subplots()
         ax1.barh(skills_df["Skill"], skills_df["Frequency"], color='lightgreen')
@@ -119,14 +120,14 @@ def main():
         ax1.set_ylabel("Skill")
         st.pyplot(fig1)
 
-        # Pie Chart
+        # Carta pai share skill
         st.subheader("🧁 Skill Share Pie Chart")
         fig2, ax2 = plt.subplots()
         ax2.pie(skills_df["Frequency"], labels=skills_df["Skill"], autopct='%1.1f%%', startangle=140)
         ax2.axis('equal')
         st.pyplot(fig2)
 
-        # Course Recommendations
+        # Cadangan kursus
         st.subheader("🎓 Recommended Courses")
         course_recs = recommend_courses(skills)
         for skill, courses in course_recs.items():
@@ -136,3 +137,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
